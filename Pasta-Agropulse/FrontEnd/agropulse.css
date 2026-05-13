@@ -1,28 +1,23 @@
-/* ═══════════════════════════════════════════════
-   AGROPULSE — Design System
-   Paleta: Verde institucional
-   Estilo: Clean corporativo, minimalista
-═══════════════════════════════════════════════ */
 :root {
-  /* Cores primárias */
+
   --c-primary:       #1e6e3e;
   --c-primary-dark:  #154f2c;
   --c-primary-light: #e8f5ee;
   --c-primary-mid:   #2a8f52;
   --c-accent:        #34a85a;
 
-  /* Neutros */
+
   --c-bg:       #f7f8f7;
   --c-surface:  #ffffff;
   --c-border:   #e2e8e4;
   --c-border-strong: #c8d4cc;
 
-  /* Texto */
+
   --c-text:       #1a2b1e;
   --c-text-mid:   #4a6054;
   --c-text-muted: #8aa898;
 
-  /* Feedback */
+ 
   --c-danger:     #dc3545;
   --c-danger-bg:  #fff0f0;
   --c-warning-bg: #fffbeb;
@@ -30,7 +25,7 @@
   --c-info-bg:    #eff6ff;
   --c-info:       #1d4ed8;
 
-  /* Sidebar */
+  
   --sidebar-w: 230px;
   --sidebar-bg: #152b1d;
   --sidebar-hover: rgba(255,255,255,.06);
@@ -39,23 +34,23 @@
   --sidebar-muted: rgba(255,255,255,.35);
   --sidebar-border: rgba(255,255,255,.07);
 
-  /* Layout */
+
   --topbar-h: 56px;
   --radius-sm: 4px;
   --radius:    6px;
   --radius-lg: 10px;
 
-  /* Sombras */
+ 
   --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
   --shadow:    0 2px 8px rgba(0,0,0,.08);
   --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
 
-  /* Tipografia */
+ 
   --font-ui:   'DM Sans', system-ui, sans-serif;
   --font-head: 'Syne', sans-serif;
 }
 
-/* ── Reset ── */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -69,9 +64,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ══════════════════════════════════════
-   SIDEBAR
-══════════════════════════════════════ */
+
 .sidebar {
   width: var(--sidebar-w);
   background: var(--sidebar-bg);
@@ -84,7 +77,7 @@ body {
   z-index: 50;
 }
 
-/* Logo */
+
 .logo-area {
   padding: 20px 18px;
   border-bottom: 1px solid var(--sidebar-border);
@@ -118,7 +111,7 @@ body {
   margin-top: 1px;
 }
 
-/* Nav */
+
 .nav {
   padding: 12px 10px;
   flex: 1;
@@ -165,7 +158,7 @@ body {
   flex-shrink: 0;
 }
 
-/* User */
+
 .user-area {
   padding: 14px 16px;
   border-top: 1px solid var(--sidebar-border);
@@ -187,9 +180,7 @@ body {
 .user-name  { font-size: 12.5px; color: #fff; font-weight: 500; }
 .user-role  { font-size: 10.5px; color: var(--sidebar-muted); }
 
-/* ══════════════════════════════════════
-   MAIN AREA
-══════════════════════════════════════ */
+
 .main {
   flex: 1;
   display: flex;
@@ -198,7 +189,7 @@ body {
   min-width: 0;
 }
 
-/* API bar */
+
 .api-bar {
   background: var(--c-primary-dark);
   color: rgba(255,255,255,.6);
@@ -223,7 +214,7 @@ body {
 .api-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-danger); flex-shrink: 0; }
 .api-dot.on { background: #4ade80; }
 
-/* Topbar */
+
 .topbar {
   background: var(--c-surface);
   border-bottom: 1px solid var(--c-border);
@@ -254,7 +245,7 @@ body {
 }
 .topbar-actions { display: flex; align-items: center; gap: 8px; }
 
-/* ── Botões ── */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -289,19 +280,16 @@ body {
 .btn-danger:hover { background: #ffd6d6; }
 .btn-sm { padding: 4px 10px; font-size: 12px; }
 
-/* ── Conteúdo ── */
 .content {
   flex: 1;
   overflow-y: auto;
   padding: 24px;
 }
 
-/* ── Pages ── */
 .page { display: none; }
 .page.active { display: block; animation: fadeIn .15s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── Stats grid ── */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -336,7 +324,6 @@ body {
   opacity: .7;
 }
 
-/* ── Card ── */
 .card {
   background: var(--c-surface);
   border: 1px solid var(--c-border);
@@ -360,7 +347,6 @@ body {
   color: var(--c-text);
 }
 
-/* ── Tabela ── */
 table { width: 100%; border-collapse: collapse; }
 th {
   padding: 10px 16px;
@@ -383,10 +369,10 @@ td {
 tr:last-child td { border-bottom: none; }
 tbody tr:hover td { background: var(--c-primary-light); }
 
-/* Scroll horizontal em tabelas */
+
 .table-wrap { overflow-x: auto; }
 
-/* ── Badges ── */
+
 .badge {
   display: inline-block;
   padding: 2px 8px;
@@ -400,7 +386,6 @@ tbody tr:hover td { background: var(--c-primary-light); }
 .badge-blue    { background: var(--c-info-bg); color: var(--c-info); }
 .badge-gray    { background: #f1f5f9; color: #475569; }
 
-/* ── Formulário ── */
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .form-group { display: flex; flex-direction: column; gap: 5px; }
 .form-group.full { grid-column: 1 / -1; }
@@ -428,7 +413,7 @@ input:focus, select:focus, textarea:focus {
 }
 input::placeholder { color: var(--c-text-muted); }
 
-/* ── Modal ── */
+
 .modal-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -485,7 +470,7 @@ input::placeholder { color: var(--c-text-muted); }
   background: var(--c-surface);
 }
 
-/* ── Toast ── */
+
 .toast {
   position: fixed;
   bottom: 20px; right: 20px;
@@ -505,7 +490,7 @@ input::placeholder { color: var(--c-text-muted); }
 .toast.error { background: var(--c-danger); }
 @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── Empty / Loading ── */
+
 .empty {
   text-align: center;
   padding: 48px 20px;
@@ -520,16 +505,14 @@ input::placeholder { color: var(--c-text-muted); }
   font-size: 13px;
 }
 
-/* ══════════════════════════════════════
-   RESPONSIVIDADE
-══════════════════════════════════════ */
 
-/* Tablet (≤ 1024px) */
+
+
 @media (max-width: 1024px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Mobile (≤ 768px) */
+
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
@@ -549,7 +532,7 @@ input::placeholder { color: var(--c-text-muted); }
   .page-title { font-size: 15px; }
 }
 
-/* Mini mobile (≤ 480px) */
+
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   .stat-card { padding: 12px 14px; }
@@ -558,7 +541,6 @@ input::placeholder { color: var(--c-text-muted); }
   .topbar-actions .btn-ghost { display: none; }
 }
 
-/* Overlay para fechar sidebar no mobile */
 .sidebar-overlay {
   display: none;
   position: fixed; inset: 0;
