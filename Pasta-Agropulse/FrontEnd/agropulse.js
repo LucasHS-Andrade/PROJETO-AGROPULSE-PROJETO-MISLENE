@@ -1,7 +1,6 @@
 let API = 'http://localhost:8000';
 let currentPage = 'painel';
 
-// ── Config de cada módulo ──────────────────────────────
 const modules = {
   fazendas: {
     title: 'Fazendas', endpoint: '/api/v1/fazendas',
@@ -178,7 +177,6 @@ const modules = {
   }
 };
 
-// ── Helpers ───────────────────────────────────────────
 function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
 function badge(val) {
@@ -202,7 +200,6 @@ function updateApi() { API = document.getElementById('apiUrl').value.replace(/\/
 function closeModalOutside(e) { if (e.target.id === 'modalOverlay') closeModal(); }
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
 
-// ── Navegação ────────────────────────────────────────
 function goTo(page, el) {
   closeSidebar();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -223,7 +220,6 @@ function refreshPage() {
   else loadTable(currentPage);
 }
 
-// ── API calls ────────────────────────────────────────
 async function apiFetch(path, opts={}) {
   const res = await fetch(API + path, { headers: {'Content-Type':'application/json'}, ...opts });
   if (!res.ok) throw new Error(await res.text());
@@ -244,7 +240,6 @@ async function testApi() {
   }
 }
 
-// ── Tabela ───────────────────────────────────────────
 async function loadTable(page) {
   const m = modules[page];
   const el = document.getElementById('table-' + page);
@@ -264,7 +259,6 @@ async function loadTable(page) {
   }
 }
 
-// ── Delete ───────────────────────────────────────────
 async function del(endpoint, id, page) {
   if (!confirm('Excluir este registro?')) return;
   try {
@@ -274,7 +268,6 @@ async function del(endpoint, id, page) {
   } catch(e) { toast('Erro ao excluir: ' + e.message, true); }
 }
 
-// ── Modal ────────────────────────────────────────────
 function openModal() {
   const m = modules[currentPage];
   if (!m) return;
@@ -294,7 +287,7 @@ async function submitForm() {
   } catch(e) { toast('Erro: ' + e.message, true); }
 }
 
-// ── Stats painel ─────────────────────────────────────
+
 async function loadStats() {
   const map = { fazendas:'stat-fazendas', safras:'stat-safras', funcionarios:'stat-funcionarios', clientes:'stat-clientes' };
   for (const [ep, elId] of Object.entries(map)) {
@@ -305,7 +298,7 @@ async function loadStats() {
   }
 }
 
-// ── Usuário ───────────────────────────────────────────
+
 function setUser() {
   const name = prompt('Qual o seu nome?', 'Administrador');
   if (!name) return;
@@ -313,7 +306,7 @@ function setUser() {
   document.getElementById('userAvatar').textContent = name[0].toUpperCase();
 }
 
-// ── Sidebar mobile ──────────────────────────────────
+
 function toggleSidebar() {
   document.querySelector('.sidebar').classList.toggle('open');
   document.getElementById('sidebarOverlay').classList.toggle('open');
@@ -323,7 +316,6 @@ function closeSidebar() {
   document.getElementById('sidebarOverlay').classList.remove('open');
 }
 
-// ── Init ─────────────────────────────────────────────
 testApi();
 loadStats();
 document.getElementById('btnNovo').style.display = 'none';
