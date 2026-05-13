@@ -1,0 +1,6 @@
+1. Abrir XAMPP → clicar Start no MySQL
+2. Abrir o cmd
+3. cd C:\Users\reser\Downloads\agro_api\agro_api
+4. venv\Scripts\activate
+5. uvicorn main:app --reload
+6. Abrir agropulse.html no navegador
