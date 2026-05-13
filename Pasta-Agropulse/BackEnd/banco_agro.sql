@@ -1,18 +1,8 @@
--- ============================================================
---  BANCO DE DADOS - EMPRESA AGRONEGÓCIO
---  Gerado a partir do diagrama ERD
---  MySQL 8.0+
--- ============================================================
-
 CREATE DATABASE IF NOT EXISTS agropulse
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
 USE agropulse;
-
--- ============================================================
--- MÓDULO 1: ESTRUTURA DA FAZENDA
--- ============================================================
 
 CREATE TABLE fazenda (
   id            INT            NOT NULL AUTO_INCREMENT,
@@ -44,9 +34,6 @@ CREATE TABLE talhao (
     REFERENCES fazenda(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- MÓDULO 2: PESSOAS
--- ============================================================
 
 CREATE TABLE funcionario (
   id            INT            NOT NULL AUTO_INCREMENT,
@@ -86,9 +73,6 @@ CREATE TABLE fornecedor (
   CONSTRAINT pk_fornecedor PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
--- ============================================================
--- MÓDULO 3: PRODUÇÃO AGRÍCOLA
--- ============================================================
 
 CREATE TABLE safra (
   id                    INT            NOT NULL AUTO_INCREMENT,
@@ -143,10 +127,6 @@ CREATE TABLE colheita (
   CONSTRAINT fk_colheita_safra   FOREIGN KEY (safra_id)
     REFERENCES safra(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
-
--- ============================================================
--- MÓDULO 4: INSUMOS E ESTOQUE
--- ============================================================
 
 CREATE TABLE insumo (
   id              INT            NOT NULL AUTO_INCREMENT,
@@ -240,10 +220,6 @@ CREATE TABLE item_pedido_compra (
     REFERENCES insumo(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- MÓDULO 5: COMERCIAL E VENDAS
--- ============================================================
-
 CREATE TABLE produto (
   id          INT            NOT NULL AUTO_INCREMENT,
   descricao   VARCHAR(120)   NOT NULL,
@@ -325,10 +301,6 @@ CREATE TABLE item_nf (
     REFERENCES produto(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- MÓDULO 6: FINANCEIRO
--- ============================================================
-
 CREATE TABLE conta_bancaria (
   id      INT            NOT NULL AUTO_INCREMENT,
   banco   VARCHAR(80)    NOT NULL,
@@ -401,10 +373,6 @@ CREATE TABLE lancamento (
     REFERENCES conta_receber(id) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- MÓDULO 7: MAQUINÁRIO
--- ============================================================
-
 CREATE TABLE equipamento (
   id          INT            NOT NULL AUTO_INCREMENT,
   descricao   VARCHAR(120)   NOT NULL,
@@ -466,10 +434,6 @@ CREATE TABLE abastecimento (
     REFERENCES insumo(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- ÍNDICES DE PERFORMANCE
--- ============================================================
-
 CREATE INDEX idx_talhao_fazenda     ON talhao(fazenda_id);
 CREATE INDEX idx_safra_talhao       ON safra(talhao_id);
 CREATE INDEX idx_safra_ano          ON safra(ano);
@@ -486,10 +450,6 @@ CREATE INDEX idx_cr_vencimento      ON conta_receber(vencimento);
 CREATE INDEX idx_lanc_data          ON lancamento(data);
 CREATE INDEX idx_manut_equip        ON manutencao(equipamento_id);
 CREATE INDEX idx_aloc_equip         ON alocacao_equipamento(equipamento_id);
-
--- ============================================================
--- DADOS INICIAIS (tipos de atividade)
--- ============================================================
 
 INSERT INTO tipo_atividade (nome, categoria) VALUES
   ('Preparo do solo',       'Solo'),
