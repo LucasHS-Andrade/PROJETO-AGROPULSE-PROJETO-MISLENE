@@ -1,8 +1,3 @@
-/* =====================================================
-   AgroPulse — Topbar & API Bar Styles
-   ===================================================== */
-
-/* ── API Bar ── */
 .api-bar {
   background: var(--c-primary-dark);
   color: rgba(255,255,255,.55);
@@ -49,7 +44,6 @@
   box-shadow: 0 0 6px rgba(74,222,128,.5);
 }
 
-/* ── Topbar ── */
 .topbar {
   background: var(--c-surface);
   border-bottom: 1px solid var(--c-border);
@@ -98,7 +92,6 @@
   gap: 8px;
 }
 
-/* ── Buttons ── */
 .btn {
   display: inline-flex;
   align-items: center;
