@@ -1,15 +1,9 @@
-/* =====================================================
-   AgroPulse — Dashboard Layout Styles
-   ===================================================== */
-
-/* ── App Shell ── */
 .app-shell {
   display: flex;
   height: 100vh;
   overflow: hidden;
 }
 
-/* ── Main Area ── */
 .main {
   flex: 1;
   display: flex;
@@ -18,7 +12,6 @@
   min-width: 0;
 }
 
-/* ── Content Area ── */
 .content {
   flex: 1;
   overflow-y: auto;
@@ -31,7 +24,6 @@
 .content::-webkit-scrollbar-thumb { background: var(--c-border-strong); border-radius: 3px; }
 .content::-webkit-scrollbar-thumb:hover { background: var(--c-text-muted); }
 
-/* ── Page Sections (SPA) ── */
 .page {
   display: none;
 }
@@ -52,7 +44,6 @@
   }
 }
 
-/* ── Sidebar Overlay (mobile) ── */
 .sidebar-overlay {
   display: none;
   position: fixed;
