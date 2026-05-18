@@ -1,14 +1,8 @@
-/* =====================================================
-   AgroPulse — Tables & Forms Styles
-   ===================================================== */
-
-/* ── Table Wrapper ── */
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* ── Table ── */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -44,7 +38,6 @@ tbody tr:hover td {
   background: var(--c-primary-light);
 }
 
-/* ── Forms ── */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -106,7 +99,6 @@ textarea {
   min-height: 80px;
 }
 
-/* ── Empty State ── */
 .empty {
   text-align: center;
   padding: 52px 20px;
@@ -125,7 +117,6 @@ textarea {
   line-height: 1.5;
 }
 
-/* ── Loading State ── */
 .loading {
   text-align: center;
   padding: 36px 20px;
