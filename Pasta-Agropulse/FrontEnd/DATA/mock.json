@@ -1,0 +1,70 @@
+{
+  "fazendas": [
+    { "id": 1, "nome": "Fazenda Boa Vista",     "municipio": "Patos de Minas",   "estado": "MG", "area_ha": 450.5,  "cnpj": "12.345.678/0001-00" },
+    { "id": 2, "nome": "Fazenda São João",       "municipio": "Uberaba",          "estado": "MG", "area_ha": 820.0,  "cnpj": "98.765.432/0001-11" },
+    { "id": 3, "nome": "Sítio Bela Aurora",      "municipio": "Uberlândia",       "estado": "MG", "area_ha": 130.25, "cnpj": null,                "cpf": "123.456.789-00" },
+    { "id": 4, "nome": "Fazenda Primavera",      "municipio": "Campo Grande",     "estado": "MS", "area_ha": 1200.0, "cnpj": "11.222.333/0001-44" },
+    { "id": 5, "nome": "Agropecuária Vista Alegre","municipio":"Rondonópolis",    "estado": "MT", "area_ha": 3500.0, "cnpj": "55.666.777/0001-88" }
+  ],
+
+  "talhoes": [
+    { "id": 1, "fazenda_id": 1, "nome": "Talhão A1", "area_ha": 80.0,  "tipo_solo": "Latossolo Vermelho",    "irrigacao": "Pivô Central" },
+    { "id": 2, "fazenda_id": 1, "nome": "Talhão A2", "area_ha": 120.5, "tipo_solo": "Latossolo Vermelho-Amarelo","irrigacao": "Sequeiro" },
+    { "id": 3, "fazenda_id": 2, "nome": "Talhão B1", "area_ha": 200.0, "tipo_solo": "Argissolo Vermelho",    "irrigacao": "Aspersão" },
+    { "id": 4, "fazenda_id": 3, "nome": "Talhão C1", "area_ha": 60.0,  "tipo_solo": "Nitossolo",             "irrigacao": "Gotejamento" },
+    { "id": 5, "fazenda_id": 4, "nome": "Talhão D1", "area_ha": 400.0, "tipo_solo": "Latossolo Vermelho",    "irrigacao": "Pivô Central" }
+  ],
+
+  "safras": [
+    { "id": 1, "talhao_id": 1, "cultura": "Soja",   "variedade": "TMG 7062 IPRO",    "ano": 2025, "data_plantio": "2024-10-15", "status": "colhida"      },
+    { "id": 2, "talhao_id": 2, "cultura": "Milho",  "variedade": "DKB 390 PRO3",     "ano": 2025, "data_plantio": "2024-11-01", "status": "colhida"      },
+    { "id": 3, "talhao_id": 3, "cultura": "Soja",   "variedade": "NS 7300 IPRO",     "ano": 2026, "data_plantio": "2025-10-20", "status": "em_andamento" },
+    { "id": 4, "talhao_id": 4, "cultura": "Feijão", "variedade": "Pérola",           "ano": 2026, "data_plantio": "2025-09-05", "status": "em_andamento" },
+    { "id": 5, "talhao_id": 5, "cultura": "Soja",   "variedade": "M 5947 IPRO",      "ano": 2026, "data_plantio": null,         "status": "planejada"    }
+  ],
+
+  "colheitas": [
+    { "id": 1, "safra_id": 1, "data": "2025-02-10", "quantidade_kg": 216000, "umidade_pct": 13.2, "impureza_pct": 0.8,  "destino": "Cooperativa Patos"  },
+    { "id": 2, "safra_id": 2, "data": "2025-03-05", "quantidade_kg": 156000, "umidade_pct": 14.5, "impureza_pct": 1.2,  "destino": "Cerealista Mineira" },
+    { "id": 3, "safra_id": 3, "data": null,          "quantidade_kg": null,   "umidade_pct": null, "impureza_pct": null, "destino": null                 }
+  ],
+
+  "funcionarios": [
+    { "id": 1, "nome": "Carlos Eduardo Sousa",  "cpf": "111.222.333-44", "cargo": "Gerente Agrícola",      "cnh": "A",  "salario": 8500.00,  "data_admissao": "2019-03-01" },
+    { "id": 2, "nome": "Maria Helena Ferreira", "cpf": "222.333.444-55", "cargo": "Técnica Agrícola",      "cnh": "B",  "salario": 4200.00,  "data_admissao": "2021-07-15" },
+    { "id": 3, "nome": "João Batista Lima",     "cpf": "333.444.555-66", "cargo": "Operador de Máquinas",  "cnh": "CE", "salario": 3800.00,  "data_admissao": "2020-01-10" },
+    { "id": 4, "nome": "Ana Paula Rodrigues",   "cpf": "444.555.666-77", "cargo": "Auxiliar Administrativo","cnh": null, "salario": 2400.00, "data_admissao": "2022-04-01" },
+    { "id": 5, "nome": "Pedro Henrique Costa",  "cpf": "555.666.777-88", "cargo": "Operador de Irrigação", "cnh": "B",  "salario": 3200.00,  "data_admissao": "2023-02-20" }
+  ],
+
+  "equipamentos": [
+    { "id": 1, "descricao": "Trator John Deere 6110J",        "tipo": "Trator",       "marca": "John Deere", "modelo": "6110J",         "ano": 2022, "horimetro": 1240, "status": "disponivel"  },
+    { "id": 2, "descricao": "Plantadeira Jumil JM 2990 AXO",  "tipo": "Plantadeira",  "marca": "Jumil",      "modelo": "JM 2990 AXO",   "ano": 2021, "horimetro": 890,  "status": "disponivel"  },
+    { "id": 3, "descricao": "Pulverizador Jacto Uniport 3030","tipo": "Pulverizador", "marca": "Jacto",      "modelo": "Uniport 3030",  "ano": 2020, "horimetro": 3200, "status": "manutencao"  },
+    { "id": 4, "descricao": "Colheitadeira New Holland TC5090","tipo": "Colheitadeira","marca": "New Holland","modelo": "TC5090",         "ano": 2019, "horimetro": 5600, "status": "disponivel"  },
+    { "id": 5, "descricao": "Caminhão VW Constellation 24.330","tipo": "Caminhão",    "marca": "Volkswagen", "modelo": "Constellation", "ano": 2018, "horimetro": null, "status": "em_uso"      }
+  ],
+
+  "insumos": [
+    { "id": 1, "nome": "Glifosato 480 CS",           "categoria": "defensivo",    "unidade_medida": "L",  "registro_mapa": "01648",  "estoque_minimo": 200 },
+    { "id": 2, "nome": "Ureia 46%",                  "categoria": "fertilizante", "unidade_medida": "kg", "registro_mapa": null,     "estoque_minimo": 5000 },
+    { "id": 3, "nome": "Soja TMG 7062 IPRO",         "categoria": "semente",      "unidade_medida": "sc", "registro_mapa": "18234",  "estoque_minimo": 100 },
+    { "id": 4, "nome": "Diesel S-10",                "categoria": "combustivel",  "unidade_medida": "L",  "registro_mapa": null,     "estoque_minimo": 3000 },
+    { "id": 5, "nome": "Inseticida Engeo Pleno",     "categoria": "defensivo",    "unidade_medida": "L",  "registro_mapa": "09821",  "estoque_minimo": 50 }
+  ],
+
+  "clientes": [
+    { "id": 1, "razao_social": "Cooperativa Agropecuária Patos Ltda", "cnpj_cpf": "00.111.222/0001-33", "tipo": "PJ", "municipio": "Patos de Minas", "estado": "MG", "limite_credito": 500000.00 },
+    { "id": 2, "razao_social": "Cerealista Mineira S.A.",             "cnpj_cpf": "11.222.333/0001-44", "tipo": "PJ", "municipio": "Uberaba",        "estado": "MG", "limite_credito": 800000.00 },
+    { "id": 3, "razao_social": "José Alves da Silva",                 "cnpj_cpf": "999.888.777-00",     "tipo": "PF", "municipio": "Uberlândia",     "estado": "MG", "limite_credito": 50000.00  },
+    { "id": 4, "razao_social": "Grãos do Cerrado Exportação Ltda",    "cnpj_cpf": "22.333.444/0001-55", "tipo": "PJ", "municipio": "Campo Grande",   "estado": "MS", "limite_credito": 2000000.00},
+    { "id": 5, "razao_social": "AgroMT Comércio de Grãos",            "cnpj_cpf": "33.444.555/0001-66", "tipo": "PJ", "municipio": "Rondonópolis",   "estado": "MT", "limite_credito": 1200000.00}
+  ],
+
+  "fornecedores": [
+    { "id": 1, "razao_social": "Agroquímica Brasil Distribuidora",    "cnpj_cpf": "44.555.666/0001-77", "tipo": "PJ", "municipio": "Uberlândia",   "estado": "MG", "contato": "(34) 3333-4444" },
+    { "id": 2, "razao_social": "Sementes Goiás Agro",                 "cnpj_cpf": "55.666.777/0001-88", "tipo": "PJ", "municipio": "Rio Verde",    "estado": "GO", "contato": "(64) 3322-5566" },
+    { "id": 3, "razao_social": "Distribuidora de Combustíveis Norte", "cnpj_cpf": "66.777.888/0001-99", "tipo": "PJ", "municipio": "Cuiabá",       "estado": "MT", "contato": "(65) 3411-9900" },
+    { "id": 4, "razao_social": "Peças & Máquinas Agrícolas Ltda",     "cnpj_cpf": "77.888.999/0001-00", "tipo": "PJ", "municipio": "Patos de Minas","estado": "MG", "contato": "(34) 9988-7766" }
+  ]
+}
