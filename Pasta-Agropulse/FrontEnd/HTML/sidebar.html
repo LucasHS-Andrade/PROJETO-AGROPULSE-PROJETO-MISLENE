@@ -1,0 +1,126 @@
+<aside class="sidebar" role="navigation" aria-label="Menu principal">
+
+  <div class="logo-area">
+    <div class="logo-row">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22V12M12 12C12 7 7 4 2 4c0 5 3 8 10 8zM12 12c0-5 5-8 10-8-1 5-4 8-10 8"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">AgroPulse</div>
+        <div class="logo-sub">Gestão Inteligente</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav">
+
+    <div class="nav-section">Principal</div>
+    <div class="nav-item active" data-page="painel" onclick="Sidebar.navigate('painel', this)" tabindex="0" role="button" aria-current="page">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+      </span>
+      Painel
+    </div>
+
+    <div class="nav-section">Produção</div>
+
+    <div class="nav-item" data-page="fazendas" onclick="Sidebar.navigate('fazendas', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </span>
+      Fazendas
+    </div>
+
+    <div class="nav-item" data-page="talhoes" onclick="Sidebar.navigate('talhoes', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>
+        </svg>
+      </span>
+      Talhões
+    </div>
+
+    <div class="nav-item" data-page="safras" onclick="Sidebar.navigate('safras', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22V7"/><path d="M5 12C5 8 8 5 12 5c0 4-3 7-7 7z"/><path d="M19 12C19 8 16 5 12 5c0 4 3 7 7 7z"/><path d="M5 18C5 14 8 11 12 11c0 4-3 7-7 7z"/><path d="M19 18C19 14 16 11 12 11c0 4 3 7 7 7z"/>
+        </svg>
+      </span>
+      Safras
+    </div>
+
+    <div class="nav-item" data-page="colheitas" onclick="Sidebar.navigate('colheitas', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v9a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>
+        </svg>
+      </span>
+      Colheitas
+    </div>
+
+    <div class="nav-section">Recursos</div>
+
+    <div class="nav-item" data-page="funcionarios" onclick="Sidebar.navigate('funcionarios', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      Funcionários
+    </div>
+
+    <div class="nav-item" data-page="equipamentos" onclick="Sidebar.navigate('equipamentos', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      </span>
+      Equipamentos
+    </div>
+
+    <div class="nav-item" data-page="insumos" onclick="Sidebar.navigate('insumos', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3h6v11l3.4 5.1A1 1 0 0117.6 21H6.4a1 1 0 01-.8-1.6L9 14V3z"/><line x1="9" y1="9" x2="15" y2="9"/>
+        </svg>
+      </span>
+      Insumos
+    </div>
+
+    <div class="nav-section">Comercial</div>
+
+    <div class="nav-item" data-page="clientes" onclick="Sidebar.navigate('clientes', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+      </span>
+      Clientes
+    </div>
+
+    <div class="nav-item" data-page="fornecedores" onclick="Sidebar.navigate('fornecedores', this)" tabindex="0" role="button">
+      <span class="nav-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+      </span>
+      Fornecedores
+    </div>
+
+  </nav>
+
+  <div class="user-area" title="Clique para editar seu nome" tabindex="0" role="button">
+    <div class="user-avatar" id="userAvatar" aria-hidden="true">A</div>
+    <div class="user-info">
+      <div class="user-name" id="userName">Usuário</div>
+      <div class="user-role">Administrador</div>
+    </div>
+  </div>
+
+</aside>

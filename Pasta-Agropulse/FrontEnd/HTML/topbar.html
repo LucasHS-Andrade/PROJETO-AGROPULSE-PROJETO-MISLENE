@@ -1,0 +1,48 @@
+<div class="api-bar" role="status" aria-live="polite">
+  <div class="api-dot" id="apiDot" title="Status da API" aria-label="Status da API"></div>
+  <span>API:</span>
+  <input
+    type="url"
+    id="apiUrl"
+    value="http://localhost:8000"
+    aria-label="URL da API"
+    placeholder="http://localhost:8000"
+    spellcheck="false"
+  />
+  <span id="apiStatus" aria-live="polite">verificando...</span>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <div class="topbar-left">
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      onclick="Sidebar.toggle()"
+      aria-label="Abrir menu lateral"
+      aria-expanded="false"
+      title="Menu"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6"  x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <h1 class="page-title" id="pageTitle">Painel</h1>
+  </div>
+
+  <div class="topbar-actions">
+    <button class="btn btn-ghost" data-action="refresh" title="Atualizar dados da página">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+        <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+      </svg>
+      Atualizar
+    </button>
+    <button class="btn btn-primary" id="btnNovo" style="display:none;" title="Adicionar novo registro">
+      + Novo
+    </button>
+  </div>
+</header>
