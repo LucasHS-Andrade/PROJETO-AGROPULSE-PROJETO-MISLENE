@@ -1,14 +1,9 @@
-/* =====================================================
-   AgroPulse — Login Page Styles
-   ===================================================== */
-
 .login-body {
   display: flex;
   height: 100vh;
   overflow: hidden;
 }
 
-/* ── Layout ── */
 .login-container {
   display: flex;
   width: 100%;
@@ -19,7 +14,6 @@
   gap: 16px;
 }
 
-/* ── Left Panel ── */
 .login-left {
   position: relative;
   flex: 1.2;
@@ -89,7 +83,6 @@
   letter-spacing: .3px;
 }
 
-/* ── Right Panel ── */
 .login-right {
   flex: 0.85;
   background: #f5f6f5;
@@ -100,7 +93,6 @@
   box-shadow: var(--shadow);
 }
 
-/* ── Form ── */
 .login-form {
   width: 100%;
   max-width: 380px;
@@ -126,7 +118,6 @@
   color: var(--c-text-muted);
 }
 
-/* ── Form Fields ── */
 .form-field {
   display: flex;
   flex-direction: column;
@@ -174,7 +165,6 @@
   min-height: 16px;
 }
 
-/* ── Forgot Link ── */
 .forgot-link {
   align-self: flex-end;
   margin-top: -10px;
@@ -188,7 +178,6 @@
   opacity: .7;
 }
 
-/* ── Login Button ── */
 .login-btn {
   display: flex;
   align-items: center;
@@ -240,7 +229,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* ── Google Button ── */
 .google-btn {
   display: flex;
   align-items: center;
@@ -263,7 +251,6 @@
   background: var(--c-primary-light);
 }
 
-/* ── Signup Prompt ── */
 .signup-prompt {
   text-align: center;
   margin-top: 20px;
@@ -280,7 +267,6 @@
   text-decoration: underline;
 }
 
-/* ── Responsive ── */
 @media (max-width: 900px) {
   .login-left {
     display: none;
