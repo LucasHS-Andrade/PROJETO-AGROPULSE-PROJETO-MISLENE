@@ -1,31 +1,22 @@
-/* =====================================================
-   AgroPulse — Responsive / Media Queries
-   ===================================================== */
-
-/* ── Large Desktop: 1280px+ ── */
 @media (min-width: 1280px) {
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* ── Desktop: 1025px–1279px ── */
 @media (max-width: 1279px) {
   :root {
     --sidebar-w: 220px;
   }
 }
 
-/* ── Tablet Landscape: 769px–1024px ── */
 @media (max-width: 1024px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* ── Tablet Portrait / Small Desktop: ≤768px ── */
 @media (max-width: 768px) {
-  /* Sidebar becomes a drawer */
   .sidebar {
     position: fixed;
     top: 0;
@@ -39,12 +30,10 @@
     transform: translateX(0);
   }
 
-  /* Show hamburger button */
   .menu-toggle {
     display: flex;
   }
 
-  /* Content padding */
   .content {
     padding: 16px;
   }
@@ -53,7 +42,6 @@
     padding: 0 16px;
   }
 
-  /* Stats */
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -63,18 +51,15 @@
     font-size: 24px;
   }
 
-  /* Tables */
   thead th,
   tbody td {
     padding: 9px 12px;
   }
 
-  /* Forms */
   .form-grid {
     grid-template-columns: 1fr;
   }
 
-  /* API bar */
   .api-bar input {
     width: 150px;
   }
@@ -84,7 +69,6 @@
   }
 }
 
-/* ── Mobile: ≤480px ── */
 @media (max-width: 480px) {
   .stats-grid {
     grid-template-columns: 1fr 1fr;
@@ -104,12 +88,10 @@
     max-height: 96vh;
   }
 
-  /* Hide refresh button on tiny screens */
   .topbar-actions .btn-ghost {
     display: none;
   }
 
-  /* API bar: hide URL input label */
   .api-bar > span:first-of-type {
     display: none;
   }
