@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroPulse — Financeiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/agropulse.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <div class="card">
+      <div class="card-body">
+        <div class="placeholder-page">
+          <div class="placeholder-icon">💰</div>
+          <div class="placeholder-title">Módulo Financeiro</div>
+          <div class="placeholder-desc">Gerencie receitas, despesas, fluxo de caixa e orçamentos da sua operação agrícola.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- MODAL (outside app, won't be moved by renderLayout) -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Novo Registro</span>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitForm()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/sidebar.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+    function reloadPage(){} function openModal(){} function submitForm(){} function pageInit(){}
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('agropulse_logged')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      renderLayout('financeiro', 'Financeiro', true);
+      pageInit();
+    });
+  </script>
+</body>
+</html>

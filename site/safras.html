@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroPulse — Safras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/agropulse.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Safras</span></div>
+      <div class="card-body"><div id="table-safras">Carregando...</div></div>
+    </div>
+
+  </div>
+  <!-- MODAL (outside app, won't be moved by renderLayout) -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Novo Registro</span>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitForm()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/sidebar.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+
+    const MODULE = {
+      endpoint: '/api/v1/safras',
+      cols: ["ID","Cultura","Variedade","Talhão","Ano","Plantio","Status"],
+      fields: r => [r.id, r.cultura, r.variedade||'—', r.talhao_id, r.ano, r.data_plantio||'—', badge(r.status)]
+    };
+    const PAYLOAD = () => ({ talhao_id: parseInt(v('f_talhao_id')), cultura: v('f_cultura'), variedade: v('f_variedade')||null, ano: parseInt(v('f_ano')), data_plantio: v('f_data_plantio')||null, status: v('f_status') });
+
+    function reloadPage() { loadTable(MODULE, 'table-safras'); }
+
+    function openModal() {
+      document.getElementById('modalTitle').textContent = 'Novo — Safras';
+      document.getElementById('modalBody').innerHTML = `
+        <div class="form-grid">
+          <div class="form-group"><label>Talhão ID</label><input id="f_talhao_id" type="number" placeholder="1"/></div>
+          <div class="form-group"><label>Cultura</label><input id="f_cultura" placeholder="Soja"/></div>
+          <div class="form-group"><label>Variedade</label><input id="f_variedade" placeholder="TMG 7062 IPRO"/></div>
+          <div class="form-group"><label>Ano</label><input id="f_ano" type="number" placeholder="2026"/></div>
+          <div class="form-group"><label>Data de Plantio</label><input id="f_data_plantio" type="date"/></div>
+          <div class="form-group"><label>Status</label>
+            <select id="f_status"><option value="planejada">Planejada</option><option value="em_andamento">Em andamento</option><option value="colhida">Colhida</option><option value="cancelada">Cancelada</option></select>
+          </div>
+        </div>`;
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+
+    async function submitForm() {
+      try {
+        await apiFetch(MODULE.endpoint, { method: 'POST', body: JSON.stringify(PAYLOAD()) });
+        toast('Salvo com sucesso!');
+        closeModal();
+        reloadPage();
+      } catch(e) { toast('Erro: ' + e.message, true); }
+    }
+
+    function pageInit() { reloadPage(); }
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('agropulse_logged')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      renderLayout('safras', 'Safras', true);
+      pageInit();
+    });
+  </script>
+</body>
+</html>

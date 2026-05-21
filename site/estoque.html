@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroPulse — Estoque</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/agropulse.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <div style="display:flex;gap:10px;margin-bottom:16px;">
+      <button class="btn btn-ghost" id="tab-insumos" onclick="switchTab('insumos')">Insumos</button>
+      <button class="btn btn-ghost" id="tab-equipamentos" onclick="switchTab('equipamentos')">Equipamentos</button>
+    </div>
+    <div class="card" id="card-insumos">
+      <div class="card-header"><span class="card-title">Insumos</span></div>
+      <div class="card-body"><div id="table-insumos">Carregando...</div></div>
+    </div>
+    <div class="card" id="card-equipamentos" style="display:none;">
+      <div class="card-header"><span class="card-title">Equipamentos</span></div>
+      <div class="card-body"><div id="table-equipamentos">Carregando...</div></div>
+    </div>
+
+  </div>
+  <!-- MODAL (outside app, won't be moved by renderLayout) -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Novo Registro</span>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitForm()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/sidebar.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+
+    let activeTab = 'insumos';
+    const MODULES = {
+      insumos: {
+        endpoint: '/api/v1/insumos',
+        cols: ['ID','Nome','Categoria','Unidade','Reg. MAPA','Estq. Min.'],
+        fields: r => [r.id, r.nome, badge(r.categoria), r.unidade_medida, r.registro_mapa||'—', r.estoque_minimo||'0']
+      },
+      equipamentos: {
+        endpoint: '/api/v1/equipamentos',
+        cols: ['ID','Descrição','Tipo','Marca','Modelo','Ano','Status'],
+        fields: r => [r.id, r.descricao, r.tipo, r.marca||'—', r.modelo||'—', r.ano||'—', badge(r.status)]
+      }
+    };
+    const FORMS = {
+      insumos: `<div class="form-grid">
+        <div class="form-group"><label>Nome</label><input id="f_nome" placeholder="Glifosato 480"/></div>
+        <div class="form-group"><label>Categoria</label>
+          <select id="f_categoria"><option value="defensivo">Defensivo</option><option value="fertilizante">Fertilizante</option><option value="semente">Semente</option><option value="combustivel">Combustivel</option><option value="outro">Outro</option></select>
+        </div>
+        <div class="form-group"><label>Unidade de Medida</label><input id="f_unidade_medida" placeholder="L"/></div>
+        <div class="form-group"><label>Registro MAPA</label><input id="f_registro_mapa" placeholder="12345"/></div>
+        <div class="form-group"><label>Estoque Minimo</label><input id="f_estoque_minimo" type="number" step="0.001" placeholder="50"/></div>
+        </div>`,
+      equipamentos: `<div class="form-grid">
+        <div class="form-group full"><label>Descricao</label><input id="f_descricao" placeholder="Trator John Deere 6110J"/></div>
+        <div class="form-group"><label>Tipo</label><input id="f_tipo" placeholder="Trator"/></div>
+        <div class="form-group"><label>Marca</label><input id="f_marca" placeholder="John Deere"/></div>
+        <div class="form-group"><label>Modelo</label><input id="f_modelo" placeholder="6110J"/></div>
+        <div class="form-group"><label>Ano</label><input id="f_ano" type="number" placeholder="2022"/></div>
+        <div class="form-group"><label>Status</label>
+          <select id="f_status"><option value="disponivel">Disponivel</option><option value="em_uso">Em Uso</option><option value="manutencao">Manutencao</option><option value="inativo">Inativo</option></select>
+        </div></div>`
+    };
+    const PAYLOADS = {
+      insumos: () => ({ nome: v('f_nome'), categoria: v('f_categoria'), unidade_medida: v('f_unidade_medida'), registro_mapa: v('f_registro_mapa')||null, estoque_minimo: parseFloat(v('f_estoque_minimo'))||null }),
+      equipamentos: () => ({ descricao: v('f_descricao'), tipo: v('f_tipo'), marca: v('f_marca')||null, modelo: v('f_modelo')||null, ano: parseInt(v('f_ano'))||null, status: v('f_status') })
+    };
+    function switchTab(tab) {
+      activeTab = tab;
+      document.getElementById('card-insumos').style.display = tab==='insumos' ? '' : 'none';
+      document.getElementById('card-equipamentos').style.display = tab==='equipamentos' ? '' : 'none';
+      ['insumos','equipamentos'].forEach(t => {
+        const btn = document.getElementById('tab-'+t);
+        btn.style.color       = t===tab ? 'var(--c-primary)' : '';
+        btn.style.borderColor = t===tab ? 'var(--c-primary)' : '';
+        btn.style.fontWeight  = t===tab ? '600' : '400';
+      });
+    }
+    function reloadPage() {
+      loadTable(MODULES.insumos, 'table-insumos');
+      loadTable(MODULES.equipamentos, 'table-equipamentos');
+    }
+    function openModal() {
+      const titles = {insumos:'Novo Insumo', equipamentos:'Novo Equipamento'};
+      document.getElementById('modalTitle').textContent = titles[activeTab];
+      document.getElementById('modalBody').innerHTML = FORMS[activeTab];
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+    async function submitForm() {
+      const m = MODULES[activeTab];
+      try {
+        await apiFetch(m.endpoint, {method:'POST', body:JSON.stringify(PAYLOADS[activeTab]())});
+        toast('Salvo com sucesso!');
+        closeModal();
+        reloadPage();
+      } catch(e) { toast('Erro: '+e.message, true); }
+    }
+    function pageInit() {
+      reloadPage();
+      switchTab('insumos');
+    }
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('agropulse_logged')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      renderLayout('estoque', 'Estoque', true);
+      pageInit();
+    });
+  </script>
+</body>
+</html>

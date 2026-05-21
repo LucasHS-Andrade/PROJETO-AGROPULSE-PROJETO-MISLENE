@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroPulse — Talhões</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/agropulse.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Talhões</span></div>
+      <div class="card-body"><div id="table-talhoes">Carregando...</div></div>
+    </div>
+
+  </div>
+  <!-- MODAL (outside app, won't be moved by renderLayout) -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Novo Registro</span>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitForm()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/sidebar.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+
+    const MODULE = {
+      endpoint: '/api/v1/talhoes',
+      cols: ["ID","Nome","Fazenda ID","Área (ha)","Solo","Irrigação"],
+      fields: r => [r.id, r.nome, r.fazenda_id, r.area_ha, r.tipo_solo||'—', r.irrigacao||'—']
+    };
+    const PAYLOAD = () => ({ fazenda_id: parseInt(v('f_fazenda_id')), nome: v('f_nome'), area_ha: parseFloat(v('f_area_ha')), tipo_solo: v('f_tipo_solo')||null, irrigacao: v('f_irrigacao')||null });
+
+    function reloadPage() { loadTable(MODULE, 'table-talhoes'); }
+
+    function openModal() {
+      document.getElementById('modalTitle').textContent = 'Novo — Talhões';
+      document.getElementById('modalBody').innerHTML = `
+        <div class="form-grid">
+          <div class="form-group"><label>Fazenda ID</label><input id="f_fazenda_id" type="number" placeholder="1"/></div>
+          <div class="form-group"><label>Nome</label><input id="f_nome" placeholder="Talhão A1"/></div>
+          <div class="form-group"><label>Área (ha)</label><input id="f_area_ha" type="number" step="0.01" placeholder="50"/></div>
+          <div class="form-group"><label>Tipo de Solo</label><input id="f_tipo_solo" placeholder="Latossolo Vermelho"/></div>
+          <div class="form-group"><label>Irrigação</label><input id="f_irrigacao" placeholder="Pivô Central"/></div>
+        </div>`;
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+
+    async function submitForm() {
+      try {
+        await apiFetch(MODULE.endpoint, { method: 'POST', body: JSON.stringify(PAYLOAD()) });
+        toast('Salvo com sucesso!');
+        closeModal();
+        reloadPage();
+      } catch(e) { toast('Erro: ' + e.message, true); }
+    }
+
+    function pageInit() { reloadPage(); }
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('agropulse_logged')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      renderLayout('talhoes', 'Talhões', true);
+      pageInit();
+    });
+  </script>
+</body>
+</html>

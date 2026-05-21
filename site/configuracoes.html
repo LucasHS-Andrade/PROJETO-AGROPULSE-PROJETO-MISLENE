@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroPulse — Configurações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/agropulse.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Configurações do Sistema</span></div>
+      <div class="card-body" style="padding:24px;">
+        <div class="form-grid" style="max-width:520px;">
+          <div class="form-group full">
+            <label>URL da API</label>
+            <input id="cfg-api" placeholder="http://localhost:8000"/>
+          </div>
+          <div class="form-group full">
+            <label>Nome da Empresa</label>
+            <input id="cfg-empresa" placeholder="Minha Fazenda Ltda"/>
+          </div>
+          <div class="form-group">
+            <label>Fuso Horario</label>
+            <select id="cfg-tz">
+              <option value="America/Sao_Paulo">Sao Paulo (BRT)</option>
+              <option value="America/Manaus">Manaus (AMT)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Idioma</label>
+            <select id="cfg-lang"><option value="pt-BR">Portugues (Brasil)</option></select>
+          </div>
+          <div class="form-group full" style="margin-top:8px;">
+            <button class="btn btn-primary" style="width:fit-content;" onclick="saveConfig()">Salvar Configuracoes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--c-danger);">
+      <div class="card-header" style="border-color:var(--c-danger);"><span class="card-title" style="color:var(--c-danger);">Zona de Perigo</span></div>
+      <div class="card-body" style="padding:20px;">
+        <p style="font-size:13.5px;color:var(--c-text-mid);margin-bottom:14px;">Acoes irreversiveis. Proceda com cautela.</p>
+        <button class="btn btn-danger" onclick="logout()">Sair da conta</button>
+      </div>
+    </div>
+
+  </div>
+  <!-- MODAL (outside app, won't be moved by renderLayout) -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Novo Registro</span>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitForm()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/sidebar.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+
+    function reloadPage() {}
+    function openModal() {}
+    function submitForm() {}
+    function logout() {
+      if (confirm('Sair da conta?')) {
+        localStorage.removeItem('agropulse_logged');
+        window.location.href = 'login.html';
+      }
+    }
+    function saveConfig() {
+      const api = document.getElementById('cfg-api').value.trim();
+      if (api) { localStorage.setItem('agropulse_api', api); }
+      toast('Configuracoes salvas!');
+    }
+    function pageInit() {
+      document.getElementById('cfg-api').value = localStorage.getItem('agropulse_api') || 'http://localhost:8000';
+    }
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('agropulse_logged')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      renderLayout('configuracoes', 'Configurações', false);
+      pageInit();
+    });
+  </script>
+</body>
+</html>

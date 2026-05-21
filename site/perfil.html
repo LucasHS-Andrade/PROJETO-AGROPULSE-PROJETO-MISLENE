@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroPulse — Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/agropulse.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <div class="card" style="overflow:hidden;">
+      <div class="profile-header">
+        <div class="profile-avatar-lg" id="profileAvatar">U</div>
+        <div>
+          <div class="profile-name" id="profileName">Usuario</div>
+          <div class="profile-role-badge" id="profileRole">Administrador</div>
+        </div>
+      </div>
+      <div class="card-body" style="padding:24px;">
+        <div class="form-grid" style="max-width:520px;">
+          <div class="form-group"><label>Nome</label><input id="p-nome" placeholder="Seu nome"/></div>
+          <div class="form-group"><label>Cargo / Funcao</label><input id="p-cargo" placeholder="Administrador"/></div>
+          <div class="form-group"><label>E-mail</label><input id="p-email" type="email" placeholder="email@exemplo.com"/></div>
+          <div class="form-group"><label>Telefone</label><input id="p-telefone" placeholder="(34) 99999-9999"/></div>
+          <div class="form-group full" style="margin-top:4px;">
+            <button class="btn btn-primary" style="width:fit-content;" onclick="saveProfile()">Salvar Perfil</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">Alterar Senha</span></div>
+      <div class="card-body" style="padding:24px;">
+        <div class="form-grid" style="max-width:520px;">
+          <div class="form-group"><label>Senha Atual</label><input type="password" id="p-senha-atual" placeholder="########"/></div>
+          <div class="form-group"><label>Nova Senha</label><input type="password" id="p-senha-nova" placeholder="########"/></div>
+          <div class="form-group full">
+            <button class="btn btn-ghost" style="width:fit-content;" onclick="toast('Funcionalidade em breve!')">Alterar Senha</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- MODAL (outside app, won't be moved by renderLayout) -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Novo Registro</span>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitForm()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/sidebar.js"></script>
+  <script src="js/shared.js"></script>
+  <script>
+
+    function reloadPage() {}
+    function openModal() {}
+    function submitForm() {}
+    function saveProfile() {
+      const name  = document.getElementById('p-nome').value.trim() || 'Usuario';
+      const cargo = document.getElementById('p-cargo').value.trim() || 'Administrador';
+      const user  = JSON.parse(localStorage.getItem('agropulse_user') || '{}');
+      user.name = name; user.role = cargo;
+      localStorage.setItem('agropulse_user', JSON.stringify(user));
+      loadUserDisplay();
+      document.getElementById('profileName').textContent = name;
+      document.getElementById('profileAvatar').textContent = name[0].toUpperCase();
+      document.getElementById('profileRole').textContent = cargo;
+      toast('Perfil atualizado!');
+    }
+    function pageInit() {
+      const user = JSON.parse(localStorage.getItem('agropulse_user') || '{}');
+      if (user.name) {
+        document.getElementById('p-nome').value = user.name;
+        document.getElementById('profileName').textContent = user.name;
+        document.getElementById('profileAvatar').textContent = user.name[0].toUpperCase();
+      }
+      if (user.role) {
+        document.getElementById('p-cargo').value = user.role;
+        document.getElementById('profileRole').textContent = user.role;
+      }
+    }
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('agropulse_logged')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      renderLayout('perfil', 'Perfil', false);
+      pageInit();
+    });
+  </script>
+</body>
+</html>
