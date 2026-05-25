@@ -80,7 +80,7 @@
       btn.disabled    = true;
       btn.textContent = 'Entrando…';
 
-      // Salva dados de usuário na sessão e redireciona
+
       localStorage.setItem('agropulse_user', JSON.stringify({
         name: user,
         role: 'Administrador'
@@ -90,12 +90,12 @@
       setTimeout(() => { window.location.href = 'painel.html'; }, 400);
     }
 
-    // Enter key support
+
     document.addEventListener('keydown', e => {
       if (e.key === 'Enter') handleLogin();
     });
 
-    // If already logged in, go to dashboard
+
     if (localStorage.getItem('agropulse_logged') === '1') {
       window.location.href = 'painel.html';
     }
